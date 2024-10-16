@@ -15,8 +15,30 @@ function submitLogin() {
     })
     .then(response => response.json())
     .then(data => {
-        
-        document.getElementById('message').innerText = data.message;
+        document.getElementById('stid').innerHTML = '';
+        document.getElementById('emid').innerHTML = '';
+        document.getElementById('message').innerText = '';
+
+
+        if (data.status == true) {
+            if (data.type == "student") {
+                document.getElementById('stid').innerHTML = `<p>ชื่อ-นามสกุล: ${data.displayname_th}</p>
+                <p>Name: ${data.displayname_en}</p>
+                <p>Faculty: ${data.faculty}</p>
+                <p>Department: ${data.department}</p>
+                `;
+
+            } else if (data.type == "Employee") {
+                document.getElementById('emid').innerHTML = `<p>ชื่อ-นามสกุล: ${data.displayname_th}</p>
+                <p>Name: ${data.displayname_en}</p>
+                <p>Department: ${data.department}</p>
+                <p>Organization: ${data.organization}</p>`;
+            }
+
+        } else {
+            document.getElementById('message').innerText = data.message; 
+        }
+
     })
     .catch(error => console.error('Error:', error));
 }
