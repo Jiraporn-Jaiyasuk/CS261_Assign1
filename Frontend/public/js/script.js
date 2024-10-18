@@ -15,7 +15,7 @@ function submitLogin() {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('stid').innerHTML = '';
+        document.getElementById('stid').innerHTML = ' ';
         document.getElementById('emid').innerHTML = '';
         document.getElementById('message').innerText = '';
 
